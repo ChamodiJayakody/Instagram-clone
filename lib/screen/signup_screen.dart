@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginScreen extends StatefulWidget {
+class SignupScreen extends StatefulWidget {
   final VoidCallback show;
-  const LoginScreen(this.show, {super.key});
+  const SignupScreen(this.show, {super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   final email = TextEditingController();
   FocusNode email_F = FocusNode();
   final password = TextEditingController();
   FocusNode password_F = FocusNode();
+  final bio = TextEditingController();
+  FocusNode bio_F = FocusNode();
+  final username = TextEditingController();
+  FocusNode username_F = FocusNode();
+  final passwordConfirm = TextEditingController();
+  FocusNode passwordConfirm_F = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,15 +28,27 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            SizedBox(width: 96.w, height: 100.h),
+            SizedBox(width: 96.w, height: 30.h),
             Center(child: Image.asset('images/logo.png')),
-            SizedBox(height: 120.h),
+            SizedBox(height: 60.h),
+            Center(
+                child: CircleAvatar(
+              radius: 34.r,
+              backgroundColor: Colors.grey.shade200,
+              backgroundImage: AssetImage('images/person.png'),
+            )),
+            SizedBox(height: 50.h),
             Textfield(email, Icons.email, 'Email', email_F),
             SizedBox(height: 15.h),
+            Textfield(username, Icons.person, 'Username', username_F),
+            SizedBox(height: 15.h),
+            Textfield(bio, Icons.abc, 'bio', bio_F),
+            SizedBox(height: 15.h),
             Textfield(password, Icons.lock, 'Password', password_F),
-            SizedBox(height: 10.h),
-            Forgot(),
-            SizedBox(height: 10.h),
+            SizedBox(height: 15.h),
+            Textfield(passwordConfirm, Icons.lock, 'PasswordConfirm',
+                passwordConfirm_F),
+            SizedBox(height: 20.h),
             Login(),
             SizedBox(height: 10.h),
             Have(),
@@ -46,20 +64,20 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Text('Don\'t have an account?',
+          Text('Already have an account?',
               style: TextStyle(
                 fontSize: 13.sp,
                 color: Colors.grey,
               )),
           GestureDetector(
             onTap: widget.show,
-            child: Text('Sign up',
+            child: Text('Log in',
                 style: TextStyle(
                   fontSize: 15.sp,
                   color: Colors.blue,
                   fontWeight: FontWeight.bold,
                 )),
-          ),
+          )
         ],
       ),
     );
@@ -76,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
           color: Colors.black,
           borderRadius: BorderRadius.circular(10.r),
         ),
-        child: Text('Log in',
+        child: Text('Sign up',
             style: TextStyle(
               fontSize: 23.sp,
               color: Colors.white,
